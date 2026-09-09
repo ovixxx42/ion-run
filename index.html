@@ -187,8 +187,20 @@ function initThree(){if(!window.THREE||renderer3D)return;try{
   renderer.setPixelRatio(dpr); renderer.setSize(W,H);
   renderer.outputColorSpace=T.SRGBColorSpace;
   
-  scene.add(new T.HemisphereLight(0xe0f2fe, 0x0284c7, 1.8));
-  const sunLight=new T.DirectionalLight(0xffedd5, 2.8);
+  scene.background=new T.Color('#0ea5e9');
+  scene.fog=new T.FogExp2('#38bdf8',.005);
+
+  const camera=new T.PerspectiveCamera(58,W/H,.1,300);
+  camera.position.set(0,4.8,14); camera.lookAt(0,1,-28);
+  const renderer=new T.WebGLRenderer({antialias:true,alpha:false});
+  renderer.setPixelRatio(dpr); renderer.setSize(W,H);
+  renderer.outputColorSpace=T.SRGBColorSpace;
+  renderer.toneMapping = T.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+
+  scene.add(new T.HemisphereLight(0xbae6fd, 0x0369a1, 1.2));
+  const sunLight=new T.DirectionalLight(0xffedd5, 1.5);
+  sunLight.position.set(-20,40,-80); scene.add(sunLight);
   sunLight.position.set(-20,40,-80); scene.add(sunLight);
 
   const mat=(color,emissive=0,intensity=0,roughness=.3,metalness=.4)=>new T.MeshStandardMaterial({color,emissive,emissiveIntensity:intensity,roughness,metalness});
@@ -200,7 +212,7 @@ function initThree(){if(!window.THREE||renderer3D)return;try{
   const sunMesh=new T.Mesh(sunGeo,sunMat);
   sunMesh.position.set(0,28,-180); scene.add(sunMesh);
 
-  const roadMat=mat(0x1e293b, 0, 0, 0.7, 0.2);
+  const sandBeachMat=mat(0xca8a04, 0, 0, 0.9, 0.0);
   box(11, 0.4, 300, roadMat, 0, -0.2, -100);
 
   const sandBeachMat=mat(0xfde047, 0, 0, 0.9, 0.0);
