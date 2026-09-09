@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob:; style-src * 'unsafe-inline';">
+<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; connect-src * 'unsafe-inline'; img-src * data: blob:; style-src * 'unsafe-inline';">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f172a"><title>ION RUN — Porsche 911 GT3 RS Infinite</title>
 <style>
@@ -93,8 +93,8 @@ function initThree(){if(!window.THREE||renderer3D)return;try{
   renderer.toneMapping=T.ACESFilmicToneMapping;
   renderer.toneMappingExposure=1.2;
   
-  scene.add(new T.AmbientLight(0x38bdf8, 0.8));
-  const dirLight=new T.DirectionalLight(0xf8fafc, 1.5);
+  scene.add(new T.AmbientLight(0x7dd3fc, 1.4));
+  const dirLight=new T.DirectionalLight(0xffedd5, 2.2);
   dirLight.position.set(10,30,-40); scene.add(dirLight);
 
   const mat=(color,emissive=0,intensity=0,roughness=.3,metalness=.4)=>new T.MeshStandardMaterial({color,emissive,emissiveIntensity:intensity,roughness,metalness});
@@ -112,7 +112,7 @@ function initThree(){if(!window.THREE||renderer3D)return;try{
   }
 
   const car=new T.Group(); scene.add(car);
-  const carBody=mat(0xf8fafc,0,0,0.15,0.7), carbon=mat(0x0f172a,0,0,0.8,0.3), glass=mat(0x0f172a,0x38bdf8,0.5,0.1,0.9), redAcc=mat(0xdc2626,0x991b1b,0.4);
+  const carBody=mat(0xf8fafc,0,0,0.15,0.7), carbon=mat(0x0f172a,0,0,0.8,0.3), glass=mat(0x0f172a,0x38bdf8,0.5,0.1,0.9);
   box(1.78,0.08,3.55,carbon,0,0.12,0,car);
   box(1.36,0.42,1.35,carBody,0,0.55,-0.05,car);
   box(1.26,0.36,0.95,glass,0,0.58,-0.1,car);
